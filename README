@@ -24,6 +24,7 @@ FILE LIST:
       #Wrote by Jingxi Xu, convert bmp cropped face frames to png frames for training data
     ./convert_val.py
       #Wrote by Jingxi Xu, convert bmp cropped face frames to png frames for validation data
+    ./ECCV_gt
     
  Special Note:
 In our code, all "validation" are repsect to the original validation set in CharLearn dataset, a.k.a our test set. 
