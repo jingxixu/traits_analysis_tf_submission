@@ -1,0 +1,33 @@
+This is an README file for DL4CV Final Project of Group 6 {Jingxi Xu (jx2324), Qiangeng Xu (qx2128), Xuefeng Hu (xh2348)}
+FILE LIST:
+./src 
+  #contrains all the source file for training and testing
+    ./model_LSTMSpatial.py 
+      #Wrote by Qiangeng Xu, created a Bi-Modal LSTM Net (re-implmentation of the baseline)
+    ./model_temporal_multi_scale.py 
+      #Wrote by Qiangeng Xu, created the new proposed Multi-Temporal Scale Net.
+    ./ops.py 
+      #Wrote by Qiangeng Xu, Operations for TensorFlow.
+    ./train_multiscale.py
+      #Wrote by Xuefeng Hu, the whole training work flow that trains the new proposed model
+    ./train.py
+      #Wrote by Xuefeng Hu, the whole training work flow that trains the baseline model
+    ./utilities.py
+      #Wrote by Jingxi Xu and Xuefeng Hu (but mostly Jingxi Xu). the utilities functions that provided batches and read features.
+    ./validate.py
+      #Wrote by Jingxi Xu, evaluation and testing of the model.
+ ./data_preprocessing
+   #contrains all the data processing files
+    ./getlandmarkAU.py
+      #Wrote by Jingxi Xu, generate landmark and AU features
+    ./convert_train.py
+      #Wrote by Jingxi Xu, convert bmp cropped face frames to png frames for training data
+    ./convert_val.py
+      #Wrote by Jingxi Xu, convert bmp cropped face frames to png frames for validation data
+    
+ Special Note:
+In our code, all "validation" are repsect to the original validation set in CharLearn dataset, a.k.a our test set. 
+That is why our test & evaluation script is called the validate.py instead of test.py
+For our validation, check train.py line 165-172 the commented code. We compute validation along with training every 500 iterations
+on our real validation set and monitor the result. However, loading a 1000 video validation is slow for our training.
+Consider that it will be extremly hard for us to overfit on the dataset, so we commented the validation and directly pick the final model as our validation (by assuming the final model has the best performance).
