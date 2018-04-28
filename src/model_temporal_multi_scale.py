@@ -1,9 +1,9 @@
 '''
 
 ----------------------------------------------------------------------
--- data loading (audio, video frames)
+-- Deep Temporal Multi-scale Net
 
--- charlie
+-- Qiangeng Xu
 ----------------------------------------------------------------------
 
 '''
@@ -11,13 +11,20 @@
 import tensorflow as tf
 from ops import *
 
+# qx2128
+
 class Qiangeng_Net(object):
     def __init__(self):
         self.frames_per_partition = 8
         self.num_au = 17
 
     def create_model(self):
-
+        '''
+            This function defined the model flow of  Deep Temporal Multi-scale Net in initial tensorflow graph building
+            The feed_dict send in np array of ground_truth label, audio vectors, cropped face frame sequences, landmark sequences
+            and au code vectors.
+            The model in the end will output the prediction scores of 5 personality traits.
+        '''
         self.ground_truth = tf.placeholder(tf.float32, shape=[None, 5], name="ground_truth")
         self.audio_pl = tf.placeholder(tf.float32, shape=[None, 6, 68], name="audio_pl")
         self.video_pl = tf.placeholder(tf.float32, shape=[None, 6,
@@ -95,6 +102,11 @@ class Qiangeng_Net(object):
 
 
     def get_scale1_features(self, visual_branch):
+        '''
+             This function defined the sub branch of visual information.
+             The 3d convolution would summarize every 2 frames and
+             return one feature vector for each partition
+        '''
         # -- -1 * 8 * 24x24x16  --> -1 * 4 * 20x20x16
         visual_branch = conv3d(visual_branch, 16,
                                k_d=2, k_h=5, k_w=5, s_d=2, s_h=1, s_w=1, name="scale1_conv3d_1", padding='VALID')
@@ -122,6 +134,11 @@ class Qiangeng_Net(object):
         return visual_branch
 
     def get_scale2_features(self, visual_branch):
+        '''
+             This function defined the sub branch of visual information.
+             The 3d convolution would summarize every 4 frames and
+             return one feature vector for each partition
+        '''
         # -- -1 * 8 * 24x24x16  --> -1 * 4 * 20x20x16
         visual_branch = conv3d(visual_branch, 16,
                                k_d=2, k_h=5, k_w=5, s_d=2, s_h=1, s_w=1, name="scale2_conv3d_1", padding='VALID')
@@ -150,6 +167,11 @@ class Qiangeng_Net(object):
         return visual_branch
 
     def get_scale3_features(self, visual_branch):
+        '''
+             This function defined the sub branch of visual information.
+             The 3d convolution would summarize every 8 frames and
+             return one feature vector for each partition
+        '''
         # -- -1 * 8 * 24x24x16  --> -1 * 4 * 20x20x16
         visual_branch = conv3d(visual_branch, 16,
                                k_d=2, k_h=5, k_w=5, s_d=2, s_h=1, s_w=1, name="scale3_conv3d_1", padding='VALID')

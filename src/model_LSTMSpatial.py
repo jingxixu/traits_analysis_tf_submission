@@ -1,9 +1,10 @@
 '''
 
 ----------------------------------------------------------------------
--- LSTM Model from ECCV 2016 Workshop
+-- LSTM Model re-implementation from ECCV 2016 Workshop
 
 -- Qiangeng Xu
+
 ----------------------------------------------------------------------
 
 '''
@@ -11,16 +12,12 @@
 import tensorflow as tf
 from ops import *
 
+# qx2128
 class JingxiNet(object):
-    #def __init__(self):
-        #self.nstates = {64, 15, 5}
-        #self.filtrowsize = {91, 1}
-        #self.filtcolsize = {39, 5}
-        #self.rowstrides = {30, 1}
-        #self.colstrides = {1, 2}
-        #self.audio_dim = 68
 
     def create_model(self):
+        ''' This function defined all model flow according to ECCV 2016 paper Bi-modal First Impressions Recognition using
+            Temporally Ordered Deep Audio and Stochastic Visual Features '''
 
         self.ground_truth = tf.placeholder(tf.float32, shape=[None, 6, 5], name="ground_truth")
         self.audio_pl = tf.placeholder(tf.float32, shape=[None, 6, 68], name="audio_pl")
