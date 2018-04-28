@@ -25,8 +25,19 @@ FILE LIST:
     ./convert_val.py
       #Wrote by Jingxi Xu, convert bmp cropped face frames to png frames for validation data
     ./ECCV_gt
+      #All ground truth files (training and validation)
+    ./log
+      #destination of log files, empty in submission
+    ./getvideofeat_train.py
+      #Wrote by Jingxi Xu, compute train video features
+    ./getvideofeat_validation.py
+      #Wrote by Jingxi Xu, compute validation video features
+    ./preprocessing_videofeats_train.py
+      #Wrote by Jingxi Xu, compute train video features
+    ./preprocessing_videofeats_validation.py
+      #Wrote by Jingxi Xu, compute valivation video features
     
- Special Note:
+Special Note:
 In our code, all "validation" are repsect to the original validation set in CharLearn dataset, a.k.a our test set. 
 That is why our test & evaluation script is called the validate.py instead of test.py
 For our validation, check train.py line 165-172 the commented code. We compute validation along with training every 500 iterations
