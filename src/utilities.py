@@ -6,8 +6,9 @@
 
 -- mostly by Jingxi Xu
 -- landmark2im by Xuefeng Hu
+--- parellel contributed by Qiangeng Xu
 ----------------------------------------------------------------------
-
+# jx2324, xh2348 and qx2128
 '''
 
 
